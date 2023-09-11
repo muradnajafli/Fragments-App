@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fragments_task.databinding.Fragment1Binding
-import java.util.Random
 
 class Fragment1 : Fragment() {
     private lateinit var binding: Fragment1Binding
@@ -39,7 +38,6 @@ class Fragment1 : Fragment() {
     }
 
     private fun getRandomColor(): Int {
-        val random = Random()
-        return Color.rgb(random.nextInt(256), random.nextInt(256), random.nextInt(256))
+        return Color.rgb((0..255).random(), (0..255).random(), (0..255).random())
     }
 }
