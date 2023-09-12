@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment2: Fragment2
     private lateinit var fragment3: Fragment3
+    private var isSwapped = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +44,14 @@ class MainActivity : AppCompatActivity() {
         parent2?.addView(fragment3Container)
         parent3?.addView(fragment2Container)
 
-
+        isSwapped = !isSwapped
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("color1", fragment2.getBackgroundColor())
         outState.putInt("color2", fragment3.getBackgroundColor())
-
+        outState.putBoolean("isSwapped", isSwapped)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         val color1 = savedInstanceState.getInt("color1")
         val color2 = savedInstanceState.getInt("color2")
         changeFragmentColors(color1, color2)
-        swapFragmentsPosition()
+
+        val fragmentSwapFlag = savedInstanceState.getBoolean("isSwapped")
+        if (fragmentSwapFlag) {
+            swapFragmentsPosition()
+        }
     }
 }
