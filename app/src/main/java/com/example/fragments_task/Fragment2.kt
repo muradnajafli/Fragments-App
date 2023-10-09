@@ -9,27 +9,29 @@ import android.view.ViewGroup
 import com.example.fragments_task.databinding.Fragment2Binding
 
 class Fragment2 : Fragment() {
-    private lateinit var view: View
-    private lateinit var binding: Fragment2Binding
+    private var _binding: Fragment2Binding? = null
+    private val binding get() = _binding!!
     private var backgroundColor: Int = Color.WHITE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = Fragment2Binding.inflate(inflater)
-        view = binding.root
+        _binding = Fragment2Binding.inflate(inflater, container, false)
 
-
-        return view
+        return binding.root
     }
     fun changeBackgroundColor(color: Int) {
         backgroundColor = color
-
-        view.setBackgroundColor(color)
+        binding.root.setBackgroundColor(color)
     }
     fun getBackgroundColor(): Int {
         return backgroundColor
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

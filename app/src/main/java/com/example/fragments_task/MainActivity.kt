@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.Fragment2, fragment2)
             .replace(R.id.Fragment3, fragment3)
             .commit()
-
     }
 
     fun changeFragmentColors(color1: Int, color2: Int) {

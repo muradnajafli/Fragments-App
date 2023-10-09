@@ -10,25 +10,29 @@ import com.example.fragments_task.databinding.Fragment3Binding
 
 
 class Fragment3 : Fragment() {
-    private lateinit var view: View
-    private lateinit var binding: Fragment3Binding
+    private var _binding: Fragment3Binding? = null
+    private val binding get() = _binding!!
     private var backGroundColor: Int = Color.WHITE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = Fragment3Binding.inflate(layoutInflater)
-        view = binding.root
+        _binding = Fragment3Binding.inflate(inflater, container, false)
 
-        return view
+        return binding.root
     }
     fun changeBackgroundColor(color: Int) {
         backGroundColor = color
-        view.setBackgroundColor(color)
+        binding.root.setBackgroundColor(color)
     }
 
     fun getBackgroundColor(): Int {
         return backGroundColor
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

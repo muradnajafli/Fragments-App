@@ -14,12 +14,8 @@ class Fragment1 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        binding = Fragment1Binding.inflate(inflater)
-        val view = binding.root.rootView
-
-
+    ): View {
+        binding = Fragment1Binding.inflate(inflater, container, false)
 
         binding.buttonChangeColor.setOnClickListener {
             val randomColor1 = getRandomColor()
@@ -33,7 +29,7 @@ class Fragment1 : Fragment() {
             mainActivity.swapFragmentsPosition()
         }
 
-        return view
+        return binding.root
 
     }
 
